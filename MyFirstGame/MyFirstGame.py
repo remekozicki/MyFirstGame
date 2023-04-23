@@ -67,8 +67,12 @@ class GameState():
                     self.state = 'intro'
 
         for elem in targetGroup:
-            pygame.time.delay(10)
             elem.rect.x += 1
+            if elem.rect.x > screen_w:
+                elem.rect.x = -50
+
+        if len(targetGroup) == 0:
+            self.state = 'intro'
 
 
 
