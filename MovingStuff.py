@@ -30,4 +30,4 @@ while True:
     target_rect.right += 1
 
     pygame.display.flip()  # draws everything form the loop
-    clock.tick(60 )
+    clock.tick(60)

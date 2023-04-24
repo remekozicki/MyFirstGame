@@ -67,16 +67,14 @@ class GameState():
                     self.state = 'intro'
 
         for elem in targetGroup:
-            elem.rect.x += 1
-            if elem.rect.x > screen_w:
-                elem.rect.x = -50
+            elem.move();
+            # elem.rect.x += 1
+            #
+            # if elem.rect.x > screen_w:
+            #     elem.rect.x = -50
 
         if len(targetGroup) == 0:
             self.state = 'intro'
-
-
-
-
 
         pygame.display.flip()
         screen.blit(background, (0, 0))
@@ -118,9 +116,9 @@ targetGroup = pygame.sprite.Group()
 play_button = Button(screen_w / 2 - 75, screen_h / 2 - 150, 0.5, "./assets/orange button/Play orange button 300x80.png")
 quit_button = Button(screen_w / 2 - 75, screen_h / 2 + 100, 0.5, "./assets/orange button/Quit orange button 300x80.png")
 
-for _ in range(20):
-    newT = Target("./assets/new_bullet.png", random.randrange(0, screen_w), random.randrange(0, screen_h))
-    # newT = Target("./assets/new_bullet.png", 100, 100)
+for i in range(20):
+    # newT = Target("./assets/new_bullet.png", random.randrange(0, screen_w), random.randrange(0, screen_h))
+    newT = Target("./assets/new_bullet.png", -random.randrange(0,100)*5, 0)
     targetGroup.add(newT)
 
 
