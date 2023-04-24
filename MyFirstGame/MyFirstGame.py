@@ -108,7 +108,7 @@ crosshairGroup = pygame.sprite.Group()
 crosshairGroup.add(crosshair)
 
 # bg
-background = pygame.image.load("./assets/bg001.png")
+background = pygame.image.load("./assets/MonkeyMeadow_No_UI.webp")
 background = pygame.transform.scale(background, (screen_w, screen_h))
 
 # targets
