@@ -62,13 +62,18 @@ class GameState():
 
                     self.state = 'main_game'
 
+                if level_button.action():
+                    print("levels selector")
+                    self.state = 'levels'
+
         menu_screen.draw(screen)
         play_button.draw(screen)
         quit_button.draw(screen)
         level_button.draw(screen)
         pygame.display.flip()
-        screen.blit(background, (0, 0))
-        # screen.blit(readyText, (screen_w / 2 - 100, screen_h / 2 - 300))
+        self.map.image = pygame.transform.scale(self.map.image, (screen_w - 200, screen_h))
+        self.map.draw(screen)
+        self.bar.draw(screen)
         crosshairGroup.update()
 
     def select_level(self):
@@ -112,6 +117,8 @@ class GameState():
         self.weapon_menager.draw(screen)
         crosshairGroup.draw(screen)
         crosshairGroup.update()
+
+
 
 
 pygame.init()

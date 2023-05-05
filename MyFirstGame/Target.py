@@ -5,11 +5,11 @@ import pygame
 
 class Target(pygame.sprite.Sprite):
 
-    def __init__(self, pic_path, pos_x, pos_y):
+    def __init__(self, pic_path, pos_x, pos_y, move_path):
         super().__init__()
         # self.pos_x = pos_x
         # self.pos_y = pos_y
-        self.path = [(10, 310), (570, 310), (570, 120), (370, 120), (370, 620), (165, 620), (165,440), (730, 440), (730, 240), (880, 240), (880, 550), (515, 550), (515, 1000)]
+        self.path = move_path
         self.path_pos = 0
         self.image = pygame.image.load(pic_path)
         self.rect = self.image.get_rect()
