@@ -21,7 +21,6 @@ class Target(pygame.sprite.Sprite):
 
     def move(self):
         x1, y1 = self.path[self.path_pos]
-        print(self.rect.x, self.rect.y)
         if self.path_pos + 1 >= len(self.path):
             x2, y2 = (520, 2000)
         else:
@@ -30,7 +29,6 @@ class Target(pygame.sprite.Sprite):
         dirn = ((x2-x1)*2, (y2-y1)*2)
         length = math.sqrt((dirn[0])**2 + (dirn[1])**2)
         dirn = (dirn[0]/length, dirn[1]/length)
-        print(dirn)
 
         self.rect.x += dirn[0] * 5
         self.rect.y += dirn[1] * 5

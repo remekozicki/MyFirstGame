@@ -5,6 +5,7 @@ import random
 import sys
 from Crosshair import Crosshair
 from Bar import Bar
+# from MainGame import MainGame
 from Target import Target
 from Button import Button
 from Menu import Menu
@@ -19,11 +20,16 @@ class GameState():
         self.map = Map(0);
         self.weapon_menager = WeaponMenager()
 
+        #TEST
         self.weapon_menager.add_weapon(0, 100, 500);
         self.weapon_menager.add_weapon(1, 300, 500);
         self.weapon_menager.add_weapon(2, 500, 500);
-        self.bar = Bar()
+        # test
 
+        self.bar = Bar(self)
+        self.selected_weapon = -1;
+
+        # self.main_game_test = MainGame()
 
     def state_manager(self):
         if self.state == 'intro':
@@ -98,6 +104,7 @@ class GameState():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 crosshair.shot()
                 kill_target()
+                self.place_selected_weapon()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     self.state = 'intro'
@@ -117,6 +124,21 @@ class GameState():
         self.weapon_menager.draw(screen)
         crosshairGroup.draw(screen)
         crosshairGroup.update()
+
+        self.bar.action()
+
+#main-game methods !!! Pozniej damy to do odosobnionej klasy!!!
+
+    def set_selected_weapon(self, weapon_type):
+        self.selected_weapon = weapon_type;
+
+    def place_selected_weapon(self):
+        pos_x, pos_y = pygame.mouse.get_pos()
+        if self.selected_weapon != -1:
+            self.weapon_menager.add_weapon(self.selected_weapon, pos_x, pos_y)
+            self.selected_weapon = -1
+
+#koniec main-game
 
 
 
