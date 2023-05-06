@@ -9,8 +9,7 @@ class Tower(pygame.sprite.Sprite):
 
         self.set_tower_attributes(tower_type)
         self.rect = self.image.get_rect()
-        self.rect.x = pos_x
-        self.rect.y = pos_y
+        self.rect.center = (pos_x, pos_y)
 
     def set_tower_attributes(self, tower_type):
         image_paths = ImagesPaths()

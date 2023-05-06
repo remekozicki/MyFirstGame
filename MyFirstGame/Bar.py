@@ -22,8 +22,8 @@ class Bar:
 
         i = 0
         for path in image_paths.weapons:
-            self.weapon_buttons.append(Button(1250, 100 + i * 150 , 0.15, path))
-            i+=1
+            self.weapon_buttons.append(Button(1250, 100 + i * 150, 0.15, path))
+            i += 1
 
     def draw(self, surface):
         surface.blit(self.image, self.rect)

@@ -11,6 +11,7 @@ from Button import Button
 from Menu import Menu
 from Map import Map
 from WeaponMenager import WeaponMenager
+from ImagesPaths import ImagesPaths
 
 
 class GameState():
@@ -131,12 +132,16 @@ class GameState():
 
     def set_selected_weapon(self, weapon_type):
         self.selected_weapon = weapon_type;
+        crosshair.tower_picture(ImagesPaths().weapons[weapon_type])
+
 
     def place_selected_weapon(self):
         pos_x, pos_y = pygame.mouse.get_pos()
-        if self.selected_weapon != -1:
-            self.weapon_menager.add_weapon(self.selected_weapon, pos_x, pos_y)
-            self.selected_weapon = -1
+        if pos_x < screen_w - 200:
+            if self.selected_weapon != -1:
+                self.weapon_menager.add_weapon(self.selected_weapon, pos_x, pos_y)
+                self.selected_weapon = -1
+                crosshair.standard_crosshair("./assets/aim.png")
 
 #koniec main-game
 
