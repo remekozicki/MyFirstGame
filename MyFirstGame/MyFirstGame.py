@@ -31,6 +31,9 @@ class GameState():
 
         self.bar = Bar(self)
         self.selected_weapon = -1
+        # targets
+        self.targetGroup = pygame.sprite.Group()
+
 
 
         # self.main_game_test = MainGame()
@@ -68,9 +71,10 @@ class GameState():
 
                 if play_button.action():
                     print("play")
+                    self.targetGroup = pygame.sprite.Group()
                     for i in range(20):
                         newT = Target("./assets/new_bullet.png", -random.randrange(0, 100) * 5, 0, self.map.path)
-                        targetGroup.add(newT)
+                        self.targetGroup.add(newT)
 
                     self.state = 'main_game'
 
@@ -127,23 +131,23 @@ class GameState():
                 sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
                 crosshair.shot()
-                kill_target()
+                self.kill_target()
                 self.place_selected_weapon()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     self.state = 'intro'
 
-        for elem in targetGroup:
+        for elem in self.targetGroup:
             elem.move()
             if elem.rect.y > 810:
                 self.state = 'intro'
 
-        if len(targetGroup) == 0:
+        if len(self.targetGroup) == 0:
             self.state = 'intro'
 
         pygame.display.flip()
         self.map.draw(screen)
-        targetGroup.draw(screen)
+        self.targetGroup.draw(screen)
         self.bar.draw(screen)
         self.weapon_menager.draw(screen)
         crosshairGroup.draw(screen)
@@ -166,6 +170,10 @@ class GameState():
                 self.weapon_menager.add_weapon(self.selected_weapon, pos_x, pos_y)
                 self.selected_weapon = -1
                 crosshair.standard_crosshair("./assets/aim.png")
+
+    # kill
+    def kill_target(self):
+        pygame.sprite.spritecollide(crosshair, self.targetGroup, True)
 
 
 # koniec main-game
@@ -193,13 +201,10 @@ crosshair = Crosshair("./assets/aim.png")
 crosshairGroup = pygame.sprite.Group()
 crosshairGroup.add(crosshair)
 
-# targets
-targetGroup = pygame.sprite.Group()
 
 
-# kill
-def kill_target():
-    pygame.sprite.spritecollide(crosshair, targetGroup, True)
+
+
 
 
 while True:
