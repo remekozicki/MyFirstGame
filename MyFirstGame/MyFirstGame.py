@@ -19,17 +19,19 @@ class GameState():
     def __init__(self):
         self.image_paths = ImagesPaths()
         self.state = 'intro'
-        self.map = Map(0);
+        self.selected_map = 0
+        self.map = Map(self.selected_map)
         self.weapon_menager = WeaponMenager()
 
         # TEST
-        self.weapon_menager.add_weapon(0, 100, 500);
-        self.weapon_menager.add_weapon(1, 300, 500);
-        self.weapon_menager.add_weapon(2, 500, 500);
+        self.weapon_menager.add_weapon(0, 100, 500)
+        self.weapon_menager.add_weapon(1, 300, 500)
+        self.weapon_menager.add_weapon(2, 500, 500)
         # test
 
         self.bar = Bar(self)
-        self.selected_weapon = -1;
+        self.selected_weapon = -1
+
 
         # self.main_game_test = MainGame()
 
@@ -104,17 +106,15 @@ class GameState():
                 if event.key == pygame.K_ESCAPE:
                     self.state = 'intro'
 
-            # if event.type == pygame.MOUSEBUTTONDOWN:
-            #     if level_1.action():
-            #         pass
-            #     if level_2.action():
-            #         pass
-            #     if level_3.action():
-            #         pass
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                # levels_screen.action()
+                print(levels_screen.action())
+
 
         pygame.display.flip()
         self.map.draw(screen)
         levels_screen.draw(screen)
+
 
 
     def main_game(self):
@@ -148,7 +148,6 @@ class GameState():
         self.weapon_menager.draw(screen)
         crosshairGroup.draw(screen)
         crosshairGroup.update()
-
         self.bar.action()
 
     # main-game methods !!! Pozniej damy to do odosobnionej klasy!!!
@@ -156,6 +155,9 @@ class GameState():
     def set_selected_weapon(self, weapon_type):
         self.selected_weapon = weapon_type;
         crosshair.tower_picture(ImagesPaths().weapons[weapon_type])
+
+    def set_selected_map(self, map_type):
+        self.map = Map(map_type)
 
     def place_selected_weapon(self):
         pos_x, pos_y = pygame.mouse.get_pos()

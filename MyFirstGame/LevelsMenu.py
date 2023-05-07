@@ -2,6 +2,7 @@ import pygame
 
 from Button import Button
 from ImagesPaths import ImagesPaths
+from Map import Map
 
 
 class LevelsMenu:
@@ -21,10 +22,11 @@ class LevelsMenu:
     def init_buttons(self):
         image_paths = ImagesPaths()
         self.maps_buttons = []
-
-        for i, path in enumerate(image_paths.maps):
+        i = 0
+        for path in image_paths.maps:
             self.maps_buttons.append(Button(620, 180 + i * 170, 0.2,
-                                            image_paths.maps[i]))
+                                            path))
+            i += 1
 
     def draw_buttons(self, surface):
         for button in self.maps_buttons:
@@ -33,4 +35,5 @@ class LevelsMenu:
     def action(self):
         for i, button in enumerate(self.maps_buttons):
             if button.action():
-                print(i)
+                # print(i)
+                return i
