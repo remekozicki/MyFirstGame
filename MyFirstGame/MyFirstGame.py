@@ -5,7 +5,7 @@ import random
 import sys
 from Crosshair import Crosshair
 from Bar import Bar
-# from MainGame import MainGame
+from LevelsMenu import LevelsMenu
 from Target import Target
 from Button import Button
 from Menu import Menu
@@ -17,11 +17,12 @@ from ImagesPaths import ImagesPaths
 class GameState():
 
     def __init__(self):
+        self.image_paths = ImagesPaths()
         self.state = 'intro'
         self.map = Map(0);
         self.weapon_menager = WeaponMenager()
 
-        #TEST
+        # TEST
         self.weapon_menager.add_weapon(0, 100, 500);
         self.weapon_menager.add_weapon(1, 300, 500);
         self.weapon_menager.add_weapon(2, 500, 500);
@@ -42,7 +43,9 @@ class GameState():
 
     def intro(self):
         pygame.mouse.set_visible(True)
-
+        # logo XD
+        # logo = pygame.image.load("./assets/logo.png")
+        # logo = pygame.transform.scale(logo, (250, 250))
         # buttons
         play_button = Button(screen_w / 2 - 75, screen_h / 2 - 150, 0.5,
                              "./assets/orange button/Play orange button 300x80.png")
@@ -85,6 +88,13 @@ class GameState():
 
     def select_level(self):
         pygame.mouse.set_visible(True)
+        #
+        # level_1 = Button(screen_w / 2 - 80, screen_h / 2 - 240, 0.2,
+        #                  self.image_paths.maps[0])
+        # level_2 = Button(screen_w / 2 - 80, screen_h / 2 - 70, 0.2,
+        #                  self.image_paths.maps[1])
+        # level_3 = Button(screen_w / 2 - 80, screen_h / 2 + 100, 0.2,
+        #                  self.image_paths.maps[2])
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -93,6 +103,19 @@ class GameState():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     self.state = 'intro'
+
+            # if event.type == pygame.MOUSEBUTTONDOWN:
+            #     if level_1.action():
+            #         pass
+            #     if level_2.action():
+            #         pass
+            #     if level_3.action():
+            #         pass
+
+        pygame.display.flip()
+        self.map.draw(screen)
+        levels_screen.draw(screen)
+
 
     def main_game(self):
 
@@ -128,12 +151,11 @@ class GameState():
 
         self.bar.action()
 
-#main-game methods !!! Pozniej damy to do odosobnionej klasy!!!
+    # main-game methods !!! Pozniej damy to do odosobnionej klasy!!!
 
     def set_selected_weapon(self, weapon_type):
         self.selected_weapon = weapon_type;
         crosshair.tower_picture(ImagesPaths().weapons[weapon_type])
-
 
     def place_selected_weapon(self):
         pos_x, pos_y = pygame.mouse.get_pos()
@@ -143,9 +165,8 @@ class GameState():
                 self.selected_weapon = -1
                 crosshair.standard_crosshair("./assets/aim.png")
 
-#koniec main-game
 
-
+# koniec main-game
 
 
 pygame.init()
@@ -162,6 +183,9 @@ screen = pygame.display.set_mode((screen_w, screen_h))
 # intro screen
 menu_screen = Menu(screen_w / 2 - 100, screen_h / 2 - 200, 200, 400)
 
+# levels screen
+levels_screen = LevelsMenu(screen_w / 2 - 150, screen_h / 2 - 300, 300, 600)
+
 # crosshair
 crosshair = Crosshair("./assets/aim.png")
 crosshairGroup = pygame.sprite.Group()
@@ -169,6 +193,7 @@ crosshairGroup.add(crosshair)
 
 # targets
 targetGroup = pygame.sprite.Group()
+
 
 # kill
 def kill_target():
