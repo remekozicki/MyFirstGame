@@ -22,7 +22,6 @@ class GameState():
 
         self.selected_map = 0
         self.map = Map(self.selected_map)
-        self.weapon_menager = WeaponMenager()
 
         # game screen
         self.screen_w = 1400
@@ -44,9 +43,14 @@ class GameState():
         if self.state == 'intro':
             self.intro()
         if self.state == 'main_game':
-            self.main_game()
+            self.main_game_test.render()
+            #self.main_game()
         if self.state == 'levels':
             self.select_level()
+
+
+    def set_state(self, state):
+        self.state = state
 
     def intro(self):
         pygame.mouse.set_visible(True)

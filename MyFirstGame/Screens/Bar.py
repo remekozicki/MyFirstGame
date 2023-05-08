@@ -1,6 +1,8 @@
 import pygame
-from ImagesPaths import ImagesPaths
-from Button import Button
+
+from MyFirstGame.MyFirstGame.ImagesPaths import ImagesPaths
+from MyFirstGame.MyFirstGame.Sprites.Button import Button
+
 
 class Bar:
     def __init__(self, main_screen):

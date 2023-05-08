@@ -62,12 +62,12 @@ class MainGame:
                 self.place_selected_weapon()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
-                    self.state = 'intro'
+                    self.game.set_state('intro')
 
         for elem in self.targetGroup:
             elem.move()
             if elem.rect.y > 810:
-                self.state = 'intro'
+                self.game.set_state('intro')
 
         if len(self.targetGroup) == 0:
             self.game.set_state('intro')

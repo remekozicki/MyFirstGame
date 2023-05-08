@@ -7,8 +7,6 @@ class Target(pygame.sprite.Sprite):
 
     def __init__(self, pic_path, pos_x, pos_y, move_path):
         super().__init__()
-        # self.pos_x = pos_x
-        # self.pos_y = pos_y
         self.path = move_path
         self.path_pos = 0
         self.image = pygame.image.load(pic_path)
