@@ -17,11 +17,13 @@ class Map:
 
         elif map_variant == 1:
             self.image = pygame.image.load(images_paths.maps[1])
-            self.path = []
+            self.path = [(10, 660), (820, 660), (835, 655), (845, 630), (850, 615), (855, 600), (860, 0), (730, 440),
+                         (730, 240), (880, 240), (880, 550), (515, 550), (515, 1000)]
 
         elif map_variant == 2:
             self.image = pygame.image.load(images_paths.maps[2])
-            self.path = []
+            self.path = [(10, 310), (300, 310), (570, 120), (370, 120), (370, 620), (165, 620), (165, 440), (730, 440),
+                         (730, 240), (880, 240), (880, 550), (515, 550), (515, 1000)]
 
         else:
             print("ERRROOOR")

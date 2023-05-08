@@ -34,8 +34,6 @@ class GameState():
         # targets
         self.targetGroup = pygame.sprite.Group()
 
-
-
         # self.main_game_test = MainGame()
 
     def state_manager(self):
@@ -110,16 +108,10 @@ class GameState():
                 if event.key == pygame.K_ESCAPE:
                     self.state = 'intro'
 
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                # levels_screen.action()
-                print(levels_screen.action())
-
-
         pygame.display.flip()
         self.map.draw(screen)
         levels_screen.draw(screen)
-
-
+        levels_screen.action(self)
 
     def main_game(self):
 
@@ -200,12 +192,6 @@ levels_screen = LevelsMenu(screen_w / 2 - 150, screen_h / 2 - 300, 300, 600)
 crosshair = Crosshair("./assets/aim.png")
 crosshairGroup = pygame.sprite.Group()
 crosshairGroup.add(crosshair)
-
-
-
-
-
-
 
 while True:
     game_stage.state_manager()

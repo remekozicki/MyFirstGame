@@ -24,16 +24,15 @@ class LevelsMenu:
         self.maps_buttons = []
         i = 0
         for path in image_paths.maps:
-            self.maps_buttons.append(Button(620, 180 + i * 170, 0.2,
-                                            path))
+            self.maps_buttons.append(Button(620, 180 + i * 170, 0.2, path))
             i += 1
 
     def draw_buttons(self, surface):
         for button in self.maps_buttons:
             button.draw(surface)
 
-    def action(self):
+    def action(self, main_screen):
         for i, button in enumerate(self.maps_buttons):
             if button.action():
-                # print(i)
-                return i
+                main_screen.set_selected_map(i)
+                print(i)
