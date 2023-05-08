@@ -1,8 +1,7 @@
 import pygame
 
-from Button import Button
-from ImagesPaths import ImagesPaths
-from Map import Map
+from MyFirstGame.MyFirstGame.ImagesPaths import ImagesPaths
+from MyFirstGame.MyFirstGame.Sprites.Button import Button
 
 
 class LevelsMenu:

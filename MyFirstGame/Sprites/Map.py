@@ -1,7 +1,6 @@
 import pygame
 from ImagesPaths import ImagesPaths
 
-
 class Map:
 
     def __init__(self, map_variant):

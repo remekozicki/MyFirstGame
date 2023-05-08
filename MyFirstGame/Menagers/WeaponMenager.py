@@ -1,4 +1,4 @@
-from Tower import Tower
+from MyFirstGame.MyFirstGame.Sprites.Tower import Tower
 
 
 class WeaponMenager():
@@ -13,4 +13,9 @@ class WeaponMenager():
     def draw(self, screen):
         for tower in self.towers:
             tower.draw(screen)
+
+
+    def clear_weapopns(self):
+        self.towers = []
+        self.bombs = []
 

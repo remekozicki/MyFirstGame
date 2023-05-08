@@ -1,12 +1,14 @@
 import pygame
-from ImagesPaths import ImagesPaths
+
+from MyFirstGame.MyFirstGame.ImagesPaths import ImagesPaths
 
 
 class Tower(pygame.sprite.Sprite):
 
     def __init__(self, tower_type, pos_x, pos_y):
         super().__init__()
-
+        self.pos_x = pos_x
+        self.pos_y = pos_y
         self.set_tower_attributes(tower_type)
         self.rect = self.image.get_rect()
         self.rect.center = (pos_x, pos_y)
