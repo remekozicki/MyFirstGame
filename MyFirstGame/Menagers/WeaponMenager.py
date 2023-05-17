@@ -1,4 +1,4 @@
-from MyFirstGame.MyFirstGame.Sprites.Tower import Tower
+from MyFirstGame.Sprites.Tower import Tower
 
 
 class WeaponMenager():

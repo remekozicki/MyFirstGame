@@ -1,6 +1,6 @@
 import pygame
 
-from MyFirstGame.MyFirstGame.ImagesPaths import ImagesPaths
+from MyFirstGame.ImagesPaths import ImagesPaths
 
 
 class Map:

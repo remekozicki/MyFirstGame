@@ -5,14 +5,17 @@ import pygame
 
 class Target(pygame.sprite.Sprite):
 
-    def __init__(self, pic_path, pos_x, pos_y, move_path):
+    def __init__(self, pos_x, pos_y, move_path, target_type):
         super().__init__()
         self.path = move_path
         self.path_pos = 0
-        self.image = pygame.image.load(pic_path)
+        self.image = pygame.image.load("assets/new_bullet.png", )
         self.rect = self.image.get_rect()
         self.rect.x = pos_x
         self.rect.y = self.path[0][1]
+
+        self.money_per_kill = 5
+        self.target_type = target_type
 
     def draw(self, screen):
         screen.blit(self.image, self.rect)

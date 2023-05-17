@@ -1,6 +1,6 @@
 import pygame
 
-from MyFirstGame.MyFirstGame.ImagesPaths import ImagesPaths
+from MyFirstGame.ImagesPaths import ImagesPaths
 
 
 class Tower(pygame.sprite.Sprite):
@@ -29,6 +29,7 @@ class Tower(pygame.sprite.Sprite):
             self.range = 100
             self.price = 50
             self.coldtime = 1000
+
         elif tower_type == 1:
             self.image = pygame.image.load(image_paths.weapons[1])
             image_w = self.image.get_width()

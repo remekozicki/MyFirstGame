@@ -4,13 +4,13 @@ import sys
 import math
 
 
-from MyFirstGame.MyFirstGame.ImagesPaths import ImagesPaths
-from MyFirstGame.MyFirstGame.Menagers.WeaponMenager import WeaponMenager
-from MyFirstGame.MyFirstGame.Screens.Bar import Bar
-# from MyFirstGame.MyFirstGame.Main import Main
-from MyFirstGame.MyFirstGame.Sprites.Crosshair import Crosshair
-from MyFirstGame.MyFirstGame.Sprites.Map import Map
-from MyFirstGame.MyFirstGame.Sprites.Target import Target
+from MyFirstGame.ImagesPaths import ImagesPaths
+from MyFirstGame.Menagers.WeaponMenager import WeaponMenager
+from MyFirstGame.Screens.Bar import Bar
+from MyFirstGame.Sprites.Crosshair import Crosshair
+from MyFirstGame.Sprites.Map import Map
+from MyFirstGame.Sprites.Target import Target
+from MyFirstGame.Sprites.Tower import Tower
 
 
 class MainGame:
@@ -27,27 +27,20 @@ class MainGame:
         self.bar = Bar(self)
         self.selected_weapon = -1
 
-        # targets
-        # self.targetGroup = pygame.sprite.Group()
-
-        # crosshair
         self.crosshair = Crosshair("assets/aim.png")
         self.crosshairGroup = pygame.sprite.Group()
         self.crosshairGroup.add(self.crosshair)
 
         self.targets_to_kill = []
-
-
-
-
-
+        self.money = 100
 
     def start_game(self):
         self.targetGroup = pygame.sprite.Group()
         self.weapon_menager.clear_weapopns()
+        self.money = 100
 
         for i in range(20):
-            newT = Target("assets/new_bullet.png", -random.randrange(0, 100) * 5, 0, self.map.path)
+            newT = Target(-random.randrange(0, 100) * 5, 0, self.map.path, 0)
             self.targetGroup.add(newT)
 
     def render(self):
@@ -81,7 +74,6 @@ class MainGame:
         self.crosshairGroup.draw(self.screen)
         self.crosshairGroup.update()
         self.bar.action()
-
         self.find_targets_in_range()
 
     def set_selected_weapon(self, weapon_type):
@@ -92,9 +84,12 @@ class MainGame:
         pos_x, pos_y = pygame.mouse.get_pos()
         if pos_x < self.screen_w - 200:
             if self.selected_weapon != -1:
-                self.weapon_menager.add_weapon(self.selected_weapon, pos_x, pos_y)
-                self.selected_weapon = -1
-                self.crosshair.standard_crosshair("assets/aim.png")
+                tower_price = Tower(self.selected_weapon, pos_x, pos_y).price
+                if self.money - tower_price >= 0:
+                    self.weapon_menager.add_weapon(self.selected_weapon, pos_x, pos_y)
+                    self.money -= tower_price
+                    self.selected_weapon = -1
+                    self.crosshair.standard_crosshair("assets/aim.png")
 
 
     def kill_target(self):
@@ -107,11 +102,12 @@ class MainGame:
     def find_targets_in_range(self):
         for tower in self.weapon_menager.towers:
             for target in self.targetGroup:
-                # print(math.sqrt((target.pos_x - tower.pos_x)**2 + (target.pos_y - tower.pos_y)**2))
                 if math.sqrt((target.rect.x - tower.pos_x)**2 + (target.rect.y - tower.pos_y)**2) < tower.range:
                     if tower.is_ready_to_shot():
                         target.kill()
+                        self.money += target.money_per_kill
                         print("in range")
+
     def kill_targets_in_range(self):
         for target in self.targets_to_kill:
             self.targetGroup.remove(target)

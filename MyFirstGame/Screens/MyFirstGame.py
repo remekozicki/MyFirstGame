@@ -2,15 +2,15 @@ import pygame
 # import random
 import sys
 
-from MyFirstGame.MyFirstGame.ImagesPaths import ImagesPaths
+from MyFirstGame.ImagesPaths import ImagesPaths
 # from MyFirstGame.MyFirstGame.Menagers.WeaponMenager import WeaponMenager
-from MyFirstGame.MyFirstGame.Screens.MainGame import MainGame
-from MyFirstGame.MyFirstGame.Screens.Menu import Menu
-from MyFirstGame.MyFirstGame.Sprites.Button import Button
+from MyFirstGame.Screens.MainGame import MainGame
+from MyFirstGame.Screens.Menu import Menu
+from MyFirstGame.Sprites.Button import Button
 # from MyFirstGame.MyFirstGame.Sprites.Crosshair import Crosshair
-from MyFirstGame.MyFirstGame.Screens.Bar import Bar
-from MyFirstGame.MyFirstGame.Screens.LevelsMenu import LevelsMenu
-from MyFirstGame.MyFirstGame.Sprites.Map import Map
+from MyFirstGame.Screens.Bar import Bar
+from MyFirstGame.Screens.LevelsMenu import LevelsMenu
+from MyFirstGame.Sprites.Map import Map
 # from MyFirstGame.MyFirstGame.Sprites.Target import Target
 
 
@@ -28,7 +28,7 @@ class GameState():
         self.screen_h = 800
         self.screen = pygame.display.set_mode((self.screen_w, self.screen_h))
 
-        self.bar = Bar(self)
+
 
         # intro screen
         self.menu_screen = Menu(self.screen_w / 2 - 100, self.screen_h / 2 - 200, 200, 400)
@@ -37,7 +37,7 @@ class GameState():
         # levels screen
         self.levels_screen = LevelsMenu(self.screen_w / 2 - 150, self.screen_h / 2 - 300, 300, 600, self.main_game_test, self)
 
-
+        self.bar = self.main_game_test.bar
 
     def state_manager(self):
         if self.state == 'intro':
