@@ -3,14 +3,13 @@ import random
 import sys
 import math
 
-
-from MyFirstGame.ImagesPaths import ImagesPaths
 from MyFirstGame.Menagers.WeaponMenager import WeaponMenager
 from MyFirstGame.Screens.Bar import Bar
 from MyFirstGame.Sprites.Crosshair import Crosshair
 from MyFirstGame.Sprites.Map import Map
 from MyFirstGame.Sprites.Target import Target
 from MyFirstGame.Sprites.Tower import Tower
+from MyFirstGame.ImagesPaths import ImagesPaths
 
 
 class MainGame:
