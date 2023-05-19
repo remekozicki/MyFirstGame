@@ -33,6 +33,15 @@ class MainGame:
         self.targets_to_kill = []
         self.money = 100
 
+        # self.drawGrid()
+
+    def drawGrid(self):
+        blockSize = 40
+        for x in range(0, self.screen_w - 200, blockSize):
+            for y in range(0, self.screen_h, blockSize):
+                gridRect = pygame.Rect(x, y, blockSize, blockSize)
+                pygame.draw.rect(self.screen, (200, 200, 200), gridRect, 1)
+
     def start_game(self):
         self.targetGroup = pygame.sprite.Group()
         self.weapon_menager.clear_weapopns()
@@ -74,6 +83,7 @@ class MainGame:
         self.crosshairGroup.update()
         self.bar.action()
         self.find_targets_in_range()
+        self.drawGrid()
 
     def set_selected_weapon(self, weapon_type):
         self.selected_weapon = weapon_type
@@ -81,14 +91,20 @@ class MainGame:
 
     def place_selected_weapon(self):
         pos_x, pos_y = pygame.mouse.get_pos()
+        grid_x = pos_x // 40
+        grid_y = pos_y // 40
+
+
         if pos_x < self.screen_w - 200:
-            if self.selected_weapon != -1:
-                tower_price = Tower(self.selected_weapon, pos_x, pos_y).price
-                if self.money - tower_price >= 0:
-                    self.weapon_menager.add_weapon(self.selected_weapon, pos_x, pos_y)
-                    self.money -= tower_price
-                    self.selected_weapon = -1
-                    self.crosshair.standard_crosshair("assets/aim.png")
+            if self.map.gridArray[grid_y][grid_x] == 0:
+                print(grid_x, grid_y)
+                if self.selected_weapon != -1:
+                    tower_price = Tower(self.selected_weapon, pos_x, pos_y).price
+                    if self.money - tower_price >= 0:
+                        self.weapon_menager.add_weapon(self.selected_weapon, pos_x, pos_y)
+                        self.money -= tower_price
+                        self.selected_weapon = -1
+                        self.crosshair.standard_crosshair("assets/aim.png")
 
 
     def kill_target(self):
