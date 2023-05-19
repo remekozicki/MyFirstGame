@@ -1,7 +1,6 @@
 import pygame
 
-from MyFirstGame.Screens.MyFirstGame import GameState
-
+from Screens.MyFirstGame import GameState
 
 if __name__ == '__main__':
 

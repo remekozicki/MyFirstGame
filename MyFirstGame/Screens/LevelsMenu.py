@@ -1,5 +1,8 @@
 import pygame
 
+# from MyFirstGame.ImagesPaths import ImagesPaths
+# from MyFirstGame.Sprites.Button import Button
+
 from MyFirstGame.ImagesPaths import ImagesPaths
 from MyFirstGame.Sprites.Button import Button
 

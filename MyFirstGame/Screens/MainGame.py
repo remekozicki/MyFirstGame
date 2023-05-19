@@ -3,6 +3,7 @@ import random
 import sys
 import math
 
+from MyFirstGame.Menagers.WavesMenager import WavesMenager
 from MyFirstGame.Menagers.WeaponMenager import WeaponMenager
 from MyFirstGame.Screens.Bar import Bar
 from MyFirstGame.Sprites.Crosshair import Crosshair
@@ -12,12 +13,15 @@ from MyFirstGame.Sprites.Tower import Tower
 from MyFirstGame.ImagesPaths import ImagesPaths
 
 
+START_MONEY = 1000
+
 class MainGame:
     def __init__(self, screen, game):
 
         self.game = game
         self.map = Map(0)
         self.weapon_menager = WeaponMenager()
+        self.wave_menager = WavesMenager()
 
         self.screen_w = 1400
         self.screen_h = 800
@@ -31,8 +35,8 @@ class MainGame:
         self.crosshairGroup.add(self.crosshair)
 
         self.targets_to_kill = []
-        self.money = 100
-
+        self.money = START_MONEY
+        self.lives = 3
         # self.drawGrid()
 
     def drawGrid(self):
@@ -42,14 +46,18 @@ class MainGame:
                 gridRect = pygame.Rect(x, y, blockSize, blockSize)
                 pygame.draw.rect(self.screen, (200, 200, 200), gridRect, 1)
 
+
     def start_game(self):
         self.targetGroup = pygame.sprite.Group()
         self.weapon_menager.clear_weapopns()
-        self.money = 100
+        self.reset_values()
 
-        for i in range(20):
-            newT = Target(-random.randrange(0, 100) * 5, 0, self.map.path, 0)
-            self.targetGroup.add(newT)
+    def reset_values(self):
+        self.money = START_MONEY
+        self.selected_weapon = -1
+        self.lives = 3
+        self.wave_menager.wave_index = 0
+
 
     def render(self):
         pygame.mouse.set_visible(False)
@@ -60,18 +68,32 @@ class MainGame:
             if event.type == pygame.MOUSEBUTTONDOWN:
                 self.crosshair.shot()
                 self.kill_target()
+                self.remove_selected_weapon()
                 self.place_selected_weapon()
+
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     self.game.set_state('intro')
 
         for elem in self.targetGroup:
             elem.move()
-            if elem.rect.y > 810:
-                self.game.set_state('intro')
+            if elem.rect.y > 800 or elem.rect.x > 1200:
+                self.lives -= 1
+                self.targetGroup.remove(elem)
+                if self.lives == 0:
+                    self.game.set_state('intro')
+                    print("YOU LOST GAME")
+
 
         if len(self.targetGroup) == 0:
-            self.game.set_state('intro')
+            if self.wave_menager.is_there_more_waves():
+                wave = self.wave_menager.get_new_wave()
+                for type in wave:
+                    newT = Target(-random.randrange(0, len(wave)*10) * 5, 0, self.map.path, type)
+                    self.targetGroup.add(newT)
+            else:
+                self.game.set_state('intro')
+                print("YOU WON GAME!!!!")
 
         pygame.display.flip()
         self.map.image = pygame.transform.scale(self.map.image, (self.screen_w - 200, self.screen_h))
@@ -80,9 +102,11 @@ class MainGame:
         self.bar.draw(self.screen)
         self.weapon_menager.draw(self.screen)
         self.crosshairGroup.draw(self.screen)
+
         self.crosshairGroup.update()
         self.bar.action()
         self.find_targets_in_range()
+
         self.drawGrid()
 
     def set_selected_weapon(self, weapon_type):
@@ -93,7 +117,6 @@ class MainGame:
         pos_x, pos_y = pygame.mouse.get_pos()
         grid_x = pos_x // 40
         grid_y = pos_y // 40
-
 
         if pos_x < self.screen_w - 200:
             if self.map.gridArray[grid_y][grid_x] == 0:
@@ -106,13 +129,19 @@ class MainGame:
                         self.selected_weapon = -1
                         self.crosshair.standard_crosshair("assets/aim.png")
 
+    def remove_selected_weapon(self):
+        pos_x, pos_y = pygame.mouse.get_pos()
+
+        if pos_x > self.screen_w - 200:
+            self.selected_weapon = -1
+            self.crosshair.standard_crosshair("assets/aim.png")
+
 
     def kill_target(self):
         pygame.sprite.spritecollide(self.crosshair, self.targetGroup, True)
 
     def set_selected_map(self, map_type):
         self.map = Map(map_type)
-        print("mg", map_type)
 
     def find_targets_in_range(self):
         for tower in self.weapon_menager.towers:
@@ -121,7 +150,6 @@ class MainGame:
                     if tower.is_ready_to_shot():
                         target.kill()
                         self.money += target.money_per_kill
-                        print("in range")
 
     def kill_targets_in_range(self):
         for target in self.targets_to_kill:

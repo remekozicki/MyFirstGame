@@ -4,7 +4,6 @@ import pygame
 class ImagesPaths:
 
     def __init__(self):
-        self.weapons = ["assets/soldierplant.png", "assets/cococanon.png", "assets/carrotrocket.png"]
-        self.enemies = ["assets/cactus.png", "assets/mine.png", "assets/mushroom.png"]
-        self.maps = ["assets/MonkeyMeadow_No_UI.webp", "assets/Hedge_No_UI.webp", "assets/TreeStump_No_UI"
-                                                                                          ".webp"]
+        self.weapons = ["assets/soldierplant.png", "assets/cococanon2.png", "assets/carrotrocket2.png"]
+        self.enemies = ["assets/BTD6Blue.png", "assets/BTD6Red.png", "assets/BTD6Yellow.png"]
+        self.maps = ["assets/MonkeyMeadow_No_UI.webp", "assets/Hedge_No_UI.webp", "assets/TreeStump_No_UI.webp"]

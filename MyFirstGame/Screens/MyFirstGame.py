@@ -2,17 +2,23 @@ import pygame
 # import random
 import sys
 
-from MyFirstGame.ImagesPaths import ImagesPaths
-# from MyFirstGame.MyFirstGame.Menagers.WeaponMenager import WeaponMenager
-from MyFirstGame.Screens.MainGame import MainGame
-from MyFirstGame.Screens.Menu import Menu
-from MyFirstGame.Sprites.Button import Button
-# from MyFirstGame.MyFirstGame.Sprites.Crosshair import Crosshair
-from MyFirstGame.Screens.Bar import Bar
-from MyFirstGame.Screens.LevelsMenu import LevelsMenu
-from MyFirstGame.Sprites.Map import Map
-# from MyFirstGame.MyFirstGame.Sprites.Target import Target
+# from MyFirstGame.ImagesPaths import ImagesPaths
+# # from MyFirstGame.MyFirstGame.Menagers.WeaponMenager import WeaponMenager
+# from MyFirstGame.Screens.MainGame import MainGame
+# from MyFirstGame.Screens.Menu import Menu
+# from MyFirstGame.Sprites.Button import Button
+# # from MyFirstGame.MyFirstGame.Sprites.Crosshair import Crosshair
+# from MyFirstGame.Screens.Bar import Bar
+# from MyFirstGame.Screens.LevelsMenu import LevelsMenu
+# from MyFirstGame.Sprites.Map import Map
+# # from MyFirstGame.MyFirstGame.Sprites.Target import Target
 
+from ImagesPaths import ImagesPaths
+from Screens.LevelsMenu import LevelsMenu
+from Screens.MainGame import MainGame
+from Sprites.Map import Map
+from Sprites.Button import Button
+from Screens.Menu import Menu
 
 class GameState():
 

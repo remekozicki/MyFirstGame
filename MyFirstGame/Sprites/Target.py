@@ -2,20 +2,35 @@ import math
 
 import pygame
 
+# from MyFirstGame.MyFirstGame.ImagesPaths import ImagesPaths
+from MyFirstGame.ImagesPaths import ImagesPaths
 
 class Target(pygame.sprite.Sprite):
 
     def __init__(self, pos_x, pos_y, move_path, target_type):
         super().__init__()
+
+        self.target_type = target_type
+        self.set_target_attributes(target_type)
+
         self.path = move_path
         self.path_pos = 0
-        self.image = pygame.image.load("assets/new_bullet.png", )
         self.rect = self.image.get_rect()
         self.rect.x = pos_x
         self.rect.y = self.path[0][1]
 
-        self.money_per_kill = 5
-        self.target_type = target_type
+    def set_target_attributes(self, type):
+        if type == 0:
+            self.image = pygame.image.load(ImagesPaths().enemies[0])
+            self.money_per_kill = 5
+        elif type == 1:
+            self.image = pygame.image.load(ImagesPaths().enemies[1])
+            self.money_per_kill = 10
+        elif type == 2:
+            self.image = pygame.image.load(ImagesPaths().enemies[2])
+            self.money_per_kill = 15
+        else:
+            print("wrong target type")
 
     def draw(self, screen):
         screen.blit(self.image, self.rect)
