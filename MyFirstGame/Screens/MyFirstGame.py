@@ -13,12 +13,14 @@ import sys
 # from MyFirstGame.Sprites.Map import Map
 # # from MyFirstGame.MyFirstGame.Sprites.Target import Target
 
-from ImagesPaths import ImagesPaths
-from Screens.LevelsMenu import LevelsMenu
-from Screens.MainGame import MainGame
-from Sprites.Map import Map
-from Sprites.Button import Button
-from Screens.Menu import Menu
+from MyFirstGame.ImagesPaths import ImagesPaths
+from MyFirstGame.Screens.LevelsMenu import LevelsMenu
+from MyFirstGame.Screens.MainGame import MainGame
+from MyFirstGame.Sprites.Map import Map
+from MyFirstGame.Sprites.Button import Button
+from MyFirstGame.Screens.Menu import Menu
+from MyFirstGame.Screens.EndGame import Endgame
+
 
 class GameState():
 
@@ -34,26 +36,28 @@ class GameState():
         self.screen_h = 800
         self.screen = pygame.display.set_mode((self.screen_w, self.screen_h))
 
-
-
         # intro screen
         self.menu_screen = Menu(self.screen_w / 2 - 100, self.screen_h / 2 - 200, 200, 400)
 
-        self.main_game_test = MainGame(self.screen, self)
+        self.main_game = MainGame(self.screen, self)
         # levels screen
-        self.levels_screen = LevelsMenu(self.screen_w / 2 - 150, self.screen_h / 2 - 300, 300, 600, self.main_game_test, self)
-
-        self.bar = self.main_game_test.bar
+        self.levels_screen = LevelsMenu(self.screen_w / 2 - 150, self.screen_h / 2 - 300, 300, 600,
+                                        self.main_game,self)
+        #bar
+        self.bar = self.main_game.bar
+        #endgame
+        self.endGame = Endgame()
 
     def state_manager(self):
         if self.state == 'intro':
             self.intro()
         if self.state == 'main_game':
-            self.main_game_test.render()
-            #self.main_game()
+            self.main_game.render()
+            # self.main_game()
         if self.state == 'levels':
             self.select_level()
-
+        if self.state == 'end_game':
+            self.end_game()
 
     def set_state(self, state):
         self.state = state
@@ -84,13 +88,13 @@ class GameState():
                 if play_button.action():
                     print("play")
                     # self.targetGroup = pygame.sprite.Group()
-                    self.main_game_test.start_game()
+                    self.main_game.start_game()
 
-                    #usun
+                    # usun
                     # for i in range(20):
                     #     newT = Target("assets/new_bullet.png", -random.randrange(0, 100) * 5, 0, self.map.path)
                     #     self.targetGroup.add(newT)
-                    #usun-end
+                    # usun-end
 
                     self.state = 'main_game'
 
@@ -109,6 +113,22 @@ class GameState():
 
         # self.crosshairGroup.add(self.crosshair)
 
+    def end_game(self):
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    self.state = 'intro'
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                self.state = 'intro'
+
+        self.endGame.set_result(self.main_game.winning)
+        self.endGame.draw(self.screen)
+        pygame.display.flip()
+
     def select_level(self):
         pygame.mouse.set_visible(True)
 
@@ -124,12 +144,9 @@ class GameState():
         self.map.image = pygame.transform.scale(self.map.image, (self.screen_w - 200, self.screen_h))
         self.map.draw(self.screen)
         self.levels_screen.draw(self.screen)
-        self.levels_screen.action(self.main_game_test)
+        self.levels_screen.action(self.main_game)
         self.levels_screen.action(self)
 
     def set_selected_map(self, map_type):
         self.map = Map(map_type)
         print("sm", map_type)
-
-
-

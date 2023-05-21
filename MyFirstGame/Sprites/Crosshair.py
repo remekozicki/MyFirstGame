@@ -7,7 +7,6 @@ class Crosshair(pygame.sprite.Sprite):
         super().__init__()
         self.standard_crosshair(pic_path)
         self.rect = self.image.get_rect()
-        self.shotSound = pygame.mixer.Sound("assets/gunshot_1.wav")
 
     def standard_crosshair(self, pic_path):
         self.image = pygame.image.load(pic_path)
@@ -22,5 +21,3 @@ class Crosshair(pygame.sprite.Sprite):
     def update(self):
         self.rect.center = pygame.mouse.get_pos()
 
-    def shot(self):
-        self.shotSound.play()
