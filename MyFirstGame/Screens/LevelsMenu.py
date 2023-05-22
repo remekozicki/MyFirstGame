@@ -11,16 +11,17 @@ class LevelsMenu:
 
     def __init__(self, pos_x, pos_y, width, height, main_game, game):
         self.init_buttons()
-        self.pos_x = pos_x
-        self.pos_y = pos_y
-        self.width = width
-        self.height = height
-        self.color = (51, 153, 255)
+        self.image = pygame.image.load("assets/woodBar.jpg")
+        self.image = pygame.transform.rotate(self.image, 90)
+        self.image = pygame.transform.scale(self.image, (width, height))
+        self.rect = self.image.get_rect()
+        self.rect.x = pos_x
+        self.rect.y = pos_y
         self.main_game = main_game
         self.game = game
 
     def draw(self, surface):
-        pygame.draw.rect(surface, self.color, pygame.Rect(self.pos_x, self.pos_y, self.width, self.height))
+        surface.blit(self.image, self.rect)
         self.draw_buttons(surface)
 
     def init_buttons(self):

@@ -68,11 +68,11 @@ class GameState():
         # logo = pygame.image.load("./assets/logo.png")
         # logo = pygame.transform.scale(logo, (250, 250))
         # buttons
-        play_button = Button(self.screen_w / 2 - 75, self.screen_h / 2 - 150, 0.5,
+        play_button = Button(self.screen_w / 2 - 75, self.screen_h / 2 - 130, 0.5,
                              "./assets/orange button/Play orange button 300x80.png")
-        quit_button = Button(self.screen_w / 2 - 75, self.screen_h / 2 + 100, 0.5,
+        quit_button = Button(self.screen_w / 2 - 75, self.screen_h / 2 + 70 , 0.5,
                              "./assets/orange button/Quit orange button 300x80.png")
-        level_button = Button(self.screen_w / 2 - 75, self.screen_h / 2, 0.5,
+        level_button = Button(self.screen_w / 2 - 75, self.screen_h / 2 - 30 , 0.5,
                               "./assets/orange button/level select orange button 300x80.png")
 
         for event in pygame.event.get():
