@@ -1,19 +1,23 @@
+import pygame.sprite
+
 from MyFirstGame.Sprites.Bomb import Bomb
 from MyFirstGame.Sprites.Tower import Tower
 
 
-class WeaponMenager():
+class WeaponMenager(pygame.sprite.Sprite):
 
     def __init__(self):
+        super().__init__()
         self.towers = []
-        self.bombs = []
+        self.bombs = pygame.sprite.Group()
 
     def add_weapon(self, tower_type, pos_x, pos_y):
         if tower_type <= 2:
             self.towers.append(Tower(tower_type, pos_x, pos_y))
         else:
-            self.bombs.append(Bomb(tower_type, pos_x, pos_y))
-        print("len", + len(self.towers))
+            bomb = Bomb(tower_type, pos_x, pos_y)
+            self.bombs.add(bomb)
+
 
     def draw_towers(self, screen):
         for tower in self.towers:
@@ -25,5 +29,5 @@ class WeaponMenager():
 
     def clear_weapopns(self):
         self.towers = []
-        self.bombs = []
+        self.bombs = pygame.sprite.Group()
 

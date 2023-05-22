@@ -44,6 +44,8 @@ class MainGame:
         self.winning = True
 
 
+
+
     def drawGrid(self):
         blockSize = 40
         for x in range(0, self.screen_w - 200, blockSize):
@@ -106,7 +108,7 @@ class MainGame:
         self.targetGroup.draw(self.screen)
         self.bar.draw(self.screen)
         self.weapon_menager.draw_towers(self.screen)
-        self.weapon_menager.draw_bombs(self.screen)
+        self.weapon_menager.bombs.draw(self.screen)
 
         self.crosshairGroup.draw(self.screen)
 
@@ -170,7 +172,7 @@ class MainGame:
             for target in self.targetGroup:
                 if math.sqrt((target.rect.x - bomb.pos_x)**2 + (target.rect.y - bomb.pos_y)**2) < bomb.range:
                     target.kill()
-                    del self.weapon_menager.bombs[index]
+                    bomb.kill()
 
 
     def kill_targets_in_range(self):

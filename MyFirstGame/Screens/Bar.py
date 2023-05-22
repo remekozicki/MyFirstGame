@@ -2,6 +2,7 @@ import pygame
 
 from MyFirstGame.ImagesPaths import ImagesPaths
 from MyFirstGame.Sprites.Button import Button
+from MyFirstGame.Sprites.Tower import Tower
 
 
 class Bar:
@@ -44,21 +45,21 @@ class Bar:
 
 
     def draw_money(self, screen):
-        my_font = pygame.font.SysFont('Comic Sans MS', 30)
+        my_font = pygame.font.Font('assets/Silkscreen/slkscre.ttf', 25)
         text_surface = my_font.render("gold: " + str(self.main_game.money), False, (255, 255, 255))
-        screen.blit(text_surface, (1230, 700))
+        screen.blit(text_surface, (1215, 700))
 
     def draw_lives(self, screen):
-        my_font = pygame.font.SysFont('Comic Sans MS', 30)
+        my_font = pygame.font.Font('assets/Silkscreen/slkscre.ttf', 25)
         text_surface = my_font.render("lives: " + str(self.main_game.lives), False, (255, 255, 255))
-        screen.blit(text_surface, (1230, 650))
+        screen.blit(text_surface, (1215, 650))
 
     def draw_waves(self, screen):
         current_wave = self.main_game.wave_menager.wave_index
         all_waves = len(self.main_game.wave_menager.waves)
-        my_font = pygame.font.SysFont('Comic Sans MS', 30)
+        my_font = pygame.font.Font('assets/Silkscreen/slkscre.ttf', 25)
         text_surface = my_font.render("wave: " + str(current_wave) + "/" + str(all_waves), False, (255, 255, 255))
-        screen.blit(text_surface, (1230, 600))
+        screen.blit(text_surface, (1215, 600))
 
 
     def action(self):
