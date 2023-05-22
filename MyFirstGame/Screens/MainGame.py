@@ -170,7 +170,7 @@ class MainGame:
     def find_targets_on_bomb(self):
         for index, bomb in enumerate(self.weapon_menager.bombs):
             for target in self.targetGroup:
-                if math.sqrt((target.rect.x - bomb.pos_x)**2 + (target.rect.y - bomb.pos_y)**2) < bomb.range:
+                if math.sqrt((target.rect.x - bomb.pos_x)**2 + (target.rect.y - bomb.pos_y)**2) < 60:
                     target.kill()
                     bomb.kill()
 
