@@ -10,7 +10,8 @@ class Crosshair(pygame.sprite.Sprite):
 
     def standard_crosshair(self, pic_path):
         self.image = pygame.image.load(pic_path)
-        self.image = pygame.transform.scale(self.image, (40, 40))
+        self.image = pygame.transform.scale(self.image, (50, 50))
+        self.image = pygame.transform.rotate(self.image, 45)
 
     def tower_picture(self, pic_path):
         self.image = pygame.image.load(pic_path)

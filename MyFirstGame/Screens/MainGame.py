@@ -33,7 +33,7 @@ class MainGame:
         self.bar = Bar(self)
         self.selected_weapon = -1
 
-        self.crosshair = Crosshair("assets/aim.png")
+        self.crosshair = Crosshair("assets/shovel.png")
         self.crosshairGroup = pygame.sprite.Group()
         self.crosshairGroup.add(self.crosshair)
 
@@ -121,8 +121,7 @@ class MainGame:
         self.find_targets_in_range()
         self.find_targets_on_bomb()
 
-        self.drawGrid()
-
+        # self.drawGrid()
     def set_selected_weapon(self, weapon_type):
         self.selected_weapon = weapon_type
         self.crosshair.tower_picture(ImagesPaths().weapons[weapon_type])
@@ -141,7 +140,7 @@ class MainGame:
                             self.weapon_menager.add_weapon(self.selected_weapon, pos_x, pos_y)
                             self.money -= weapon_price
                             self.selected_weapon = -1
-                            self.crosshair.standard_crosshair("assets/aim.png")
+                            self.crosshair.standard_crosshair("assets/shovel.png")
                 else:
                     if self.map.gridArray[grid_y][grid_x] == 1:
                         weapon_price = Bomb(self.selected_weapon, pos_x, pos_y).price
@@ -149,14 +148,14 @@ class MainGame:
                             self.weapon_menager.add_weapon(self.selected_weapon, pos_x, pos_y)
                             self.money -= weapon_price
                             self.selected_weapon = -1
-                            self.crosshair.standard_crosshair("assets/aim.png")
+                            self.crosshair.standard_crosshair("assets/shovel.png")
 
     def remove_selected_weapon(self):
         pos_x, pos_y = pygame.mouse.get_pos()
 
         if pos_x > self.screen_w - 200:
             self.selected_weapon = -1
-            self.crosshair.standard_crosshair("assets/aim.png")
+            self.crosshair.standard_crosshair("assets/shovel.png")
 
 
     def set_selected_map(self, map_type):
@@ -182,6 +181,10 @@ class MainGame:
                     self.money += target.money_per_kill
                     bomb.kill()
 
+
+    def kill_targets_in_range(self):
+        for target in self.targets_to_kill:
+            self.targetGroup.remove(target)
 
 
 
