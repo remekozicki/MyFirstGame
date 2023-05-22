@@ -24,9 +24,8 @@ class Bomb(pygame.sprite.Sprite):
             image_w = self.image.get_width()
             image_h = self.image.get_height()
             self.image = pygame.transform.scale(self.image, (int(image_w*0.1), int(image_h*0.1)))
-            self.damage = 5
             self.range = 100
-            self.price = 50
+            self.price = 150
 
 
         elif bomb_type == 4:
@@ -34,18 +33,8 @@ class Bomb(pygame.sprite.Sprite):
             image_w = self.image.get_width()
             image_h = self.image.get_height()
             self.image = pygame.transform.scale(self.image, (int(image_w * 0.1), int(image_h * 0.1)))
-            self.damage = 15
-            self.range = 200
-            self.price = 100
-
-        # elif bomb_type == 5:
-        #     self.image = pygame.image.load(image_paths.weapons[5])
-        #     image_w = self.image.get_width()
-        #     image_h = self.image.get_height()
-        #     self.image = pygame.transform.scale(self.image, (int(image_w * 0.1), int(image_h * 0.1)))
-        #     self.damage = 20
-        #     self.range = 250
-        #     self.price = 200
+            self.range = 250
+            self.price = 250
 
         else:
             print("error in bomb class - wrong type")

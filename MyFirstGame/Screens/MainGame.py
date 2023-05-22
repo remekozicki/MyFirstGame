@@ -176,15 +176,20 @@ class MainGame:
     def find_targets_on_bomb(self):
         for index, bomb in enumerate(self.weapon_menager.bombs):
             for target in self.targetGroup:
-                if math.sqrt((target.rect.x - bomb.pos_x)**2 + (target.rect.y - bomb.pos_y)**2) < bomb.range:
-                    target.kill()
-                    self.money += target.money_per_kill
+                distance = math.sqrt((target.rect.x - bomb.pos_x)**2 + (target.rect.y - bomb.pos_y)**2)
+                if distance < 60:
                     bomb.kill()
+                    for target in self.targetGroup:
+                        distance = math.sqrt((target.rect.x - bomb.pos_x) ** 2 + (target.rect.y - bomb.pos_y) ** 2)
+                        if(distance < bomb.range):
+                            target.kill()
+                            self.money += target.money_per_kill
 
 
-    def kill_targets_in_range(self):
-        for target in self.targets_to_kill:
-            self.targetGroup.remove(target)
+    #
+    # def kill_targets_in_range(self):
+    #     for target in self.targets_to_kill:
+    #         self.targetGroup.remove(target)
 
 
 

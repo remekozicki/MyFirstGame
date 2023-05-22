@@ -75,6 +75,8 @@ class Bar:
             my_font = pygame.font.Font('assets/Silkscreen/slkscre.ttf', 10)
             text_surface = my_font.render("price: " + str(Bomb(i, 0, 0).price), False, (255, 255, 255))
             screen.blit(text_surface, (1310, start_group + i * 110 + 15))
+            text_surface = my_font.render("range: " + str(Bomb(i, 0, 0).range), False, (255, 255, 255))
+            screen.blit(text_surface, (1310, start_group + i * 110 + 25))
 
 
     def draw_money(self, screen):
