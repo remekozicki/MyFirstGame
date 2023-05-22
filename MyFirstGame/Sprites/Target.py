@@ -8,6 +8,7 @@ from MyFirstGame.ImagesPaths import ImagesPaths
 class Target(pygame.sprite.Sprite):
 
     def __init__(self, pos_x, pos_y, move_path, target_type):
+        pygame.font.init()
         super().__init__()
 
         self.target_type = target_type
@@ -23,17 +24,33 @@ class Target(pygame.sprite.Sprite):
         if type == 0:
             self.image = pygame.image.load(ImagesPaths().enemies[0])
             self.money_per_kill = 5
+            self.hp = 50
         elif type == 1:
             self.image = pygame.image.load(ImagesPaths().enemies[1])
             self.money_per_kill = 10
+            self.hp = 100
         elif type == 2:
             self.image = pygame.image.load(ImagesPaths().enemies[2])
             self.money_per_kill = 15
+            self.hp = 200
         else:
             print("wrong target type")
 
+    # def draw(self, screen):
+    #
+    #     screen.blit(self.image, self.rect)
+        # my_font = pygame.font.SysFont('Comic Sans MS', 30)
+        # text_tower = my_font.render("koperek", False, (255, 255, 255))
+        # screen.blit(text_tower, (200, 200))
+
+
+
     def draw(self, screen):
         screen.blit(self.image, self.rect)
+
+        my_font = pygame.font.Font('assets/Silkscreen/slkscre.ttf', 15)
+        hp = my_font.render(str(self.hp), False, (255, 255, 255))
+        screen.blit(hp, (self.rect.x + 15, self.rect.y - 15))
 
     def move(self):
         x1, y1 = self.path[self.path_pos]

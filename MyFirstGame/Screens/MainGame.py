@@ -105,7 +105,11 @@ class MainGame:
         pygame.display.flip()
         self.map.image = pygame.transform.scale(self.map.image, (self.screen_w - 200, self.screen_h))
         self.map.draw(self.screen)
-        self.targetGroup.draw(self.screen)
+        # self.targetGroup.draw(self.screen)
+
+        for target in self.targetGroup:
+            target.draw(self.screen)
+
         self.bar.draw(self.screen)
         self.weapon_menager.draw_towers(self.screen)
         self.weapon_menager.bombs.draw(self.screen)
@@ -163,21 +167,21 @@ class MainGame:
             for target in self.targetGroup:
                 if math.sqrt((target.rect.x - tower.pos_x)**2 + (target.rect.y - tower.pos_y)**2) < tower.range:
                     if tower.is_ready_to_shot():
-                        target.kill()
-                        self.money += target.money_per_kill
+                        target.hp -= tower.damage
                         self.shotSound.play()
+                        if(target.hp <= 0):
+                                target.kill()
+                                self.money += target.money_per_kill
+
 
     def find_targets_on_bomb(self):
         for index, bomb in enumerate(self.weapon_menager.bombs):
             for target in self.targetGroup:
-                if math.sqrt((target.rect.x - bomb.pos_x)**2 + (target.rect.y - bomb.pos_y)**2) < 60:
+                if math.sqrt((target.rect.x - bomb.pos_x)**2 + (target.rect.y - bomb.pos_y)**2) < bomb.range:
                     target.kill()
+                    self.money += target.money_per_kill
                     bomb.kill()
 
-
-    def kill_targets_in_range(self):
-        for target in self.targets_to_kill:
-            self.targetGroup.remove(target)
 
 
 
