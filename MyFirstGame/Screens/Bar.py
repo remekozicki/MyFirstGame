@@ -36,12 +36,20 @@ class Bar:
         self.draw_money(screen)
         self.draw_lives(screen)
         self.draw_waves(screen)
+        self.draw_prices(screen)
 
     def draw_buttons(self, screen):
         for button in self.weapon_buttons:
             # color = (255, 255, 255)
             # pygame.draw.rect(screen, color, pygame.Rect(button.pos_x, button.pos_y, 100, 100))
             button.draw(screen)
+
+    def draw_prices(self, screen):
+        image_paths = ImagesPaths()
+        for i in range(len(image_paths.weapons)):
+            my_font = pygame.font.Font('assets/Silkscreen/slkscre.ttf', 10)
+            text_surface = my_font.render("price: " + str(Tower(0, 0, i).price), False, (255, 255, 255))
+            screen.blit(text_surface, (1300, 30 + i * 110))
 
 
     def draw_money(self, screen):
