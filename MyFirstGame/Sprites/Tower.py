@@ -25,26 +25,25 @@ class Tower(pygame.sprite.Sprite):
             image_w = self.image.get_width()
             image_h = self.image.get_height()
             self.image = pygame.transform.scale(self.image, (int(image_w*0.1), int(image_h*0.1)))
-            self.damage = 5
+            self.damage = 15
             self.range = 100
             self.price = 50
             self.coldtime = 1000
-
         elif tower_type == 1:
             self.image = pygame.image.load(image_paths.weapons[1])
             image_w = self.image.get_width()
             image_h = self.image.get_height()
             self.image = pygame.transform.scale(self.image, (int(image_w * 0.1), int(image_h * 0.1)))
-            self.damage = 15
+            self.damage = 20
             self.range = 200
-            self.price = 200
+            self.price = 150
             self.coldtime = 500
         elif tower_type == 2:
             self.image = pygame.image.load(image_paths.weapons[2])
             image_w = self.image.get_width()
             image_h = self.image.get_height()
             self.image = pygame.transform.scale(self.image, (int(image_w * 0.1), int(image_h * 0.1)))
-            self.damage = 20
+            self.damage = 25
             self.range = 250
             self.price = 300
             self.coldtime = 300
