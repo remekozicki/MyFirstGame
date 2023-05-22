@@ -14,7 +14,7 @@ from MyFirstGame.Sprites.Tower import Tower
 from MyFirstGame.ImagesPaths import ImagesPaths
 
 
-START_MONEY = 1000
+START_MONEY = 100
 
 class MainGame:
     def __init__(self, screen, game):

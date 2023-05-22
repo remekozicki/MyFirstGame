@@ -37,7 +37,7 @@ class Tower(pygame.sprite.Sprite):
             self.image = pygame.transform.scale(self.image, (int(image_w * 0.1), int(image_h * 0.1)))
             self.damage = 15
             self.range = 200
-            self.price = 100
+            self.price = 200
             self.coldtime = 500
         elif tower_type == 2:
             self.image = pygame.image.load(image_paths.weapons[2])
@@ -46,7 +46,7 @@ class Tower(pygame.sprite.Sprite):
             self.image = pygame.transform.scale(self.image, (int(image_w * 0.1), int(image_h * 0.1)))
             self.damage = 20
             self.range = 250
-            self.price = 200
+            self.price = 300
             self.coldtime = 300
         else:
             print("error in tower class - wrong type")
