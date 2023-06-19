@@ -12,7 +12,7 @@ class Map:
         images_paths = ImagesPaths()
         # print(map_variant)
         if map_variant == 0:
-            self.image = pygame.image.load(images_paths.maps[0])
+            self.image = pygame.image.load(images_paths.maps[0]).convert()
             self.path = [(10, 310), (570, 310), (570, 120), (370, 120), (370, 620), (165, 620), (165, 440), (730, 440),
                          (730, 240), (880, 240), (880, 550), (515, 550), (515, 1000)]
             self.ending_place = (515, 800)
@@ -40,7 +40,7 @@ class Map:
             ]
 
         elif map_variant == 1:
-            self.image = pygame.image.load(images_paths.maps[1])
+            self.image = pygame.image.load(images_paths.maps[1]).convert()
             self.path = [(10, 440), (40, 440), (40, 360), (140, 360), (140, 480), (240, 480), (240, 240), (340, 240), (340, 560),
                          (440, 560), (440, 160), (520, 160), (520, 640), (640, 640), (640, 160), (720, 160), (720, 560), (820, 560),
                          (820, 240), (910, 240), (910, 500), (1020, 500), (1020, 360), (1120, 360), (1120, 440), (1201, 440) ]
@@ -70,7 +70,7 @@ class Map:
             ]
 
         elif map_variant == 2:
-            self.image = pygame.image.load(images_paths.maps[2])
+            self.image = pygame.image.load(images_paths.maps[2]).convert()
             self.path = [(10, 310), (300, 310), (570, 120), (370, 120), (370, 620), (165, 620), (165, 440), (730, 440),
                          (730, 240), (880, 240), (880, 550), (515, 550), (515, 1000)]
             self.ending_place = (515, 800)

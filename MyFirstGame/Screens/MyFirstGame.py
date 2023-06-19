@@ -20,7 +20,7 @@ from MyFirstGame.Sprites.Map import Map
 from MyFirstGame.Sprites.Button import Button
 from MyFirstGame.Screens.Menu import Menu
 from MyFirstGame.Screens.EndGame import Endgame
-
+from pygame.locals import *
 
 class GameState():
 
@@ -29,12 +29,14 @@ class GameState():
         self.state = 'intro'
 
         self.selected_map = 0
-        self.map = Map(self.selected_map)
+
 
         # game screen
         self.screen_w = 1400
         self.screen_h = 800
         self.screen = pygame.display.set_mode((self.screen_w, self.screen_h))
+
+        self.map = Map(self.selected_map)
 
         # intro screen
         self.menu_screen = Menu(self.screen_w / 2 - 100, self.screen_h / 2 - 200, 200, 400)

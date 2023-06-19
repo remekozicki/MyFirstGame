@@ -9,7 +9,7 @@ class Crosshair(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
 
     def standard_crosshair(self, pic_path):
-        self.image = pygame.image.load(pic_path)
+        self.image = pygame.image.load(pic_path).convert_alpha()
         self.image = pygame.transform.scale(self.image, (50, 50))
         self.image = pygame.transform.rotate(self.image, 45)
 

@@ -4,7 +4,7 @@ import pygame
 class Menu():
 
     def __init__(self, pos_x, pos_y, width, height):
-        self.image = pygame.image.load("assets/woodBar.jpg")
+        self.image = pygame.image.load("assets/woodBar.jpg").convert()
         self.image = pygame.transform.rotate(self.image, 90)
         self.image = pygame.transform.scale(self.image, (width, height))
         self.rect = self.image.get_rect()

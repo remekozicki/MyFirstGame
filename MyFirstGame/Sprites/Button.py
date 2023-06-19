@@ -6,7 +6,7 @@ class Button():
         self.scale = scale
         self.pos_x = pos_x
         self.pos_y = pos_y
-        self.image = pygame.image.load(pic_path)
+        self.image = pygame.image.load(pic_path).convert_alpha()
         self.width = self.image.get_width()
         self.height = self.image.get_height()
         self.image = pygame.transform.scale(self.image, (int(self.width * self.scale), int(self.height*self.scale)))

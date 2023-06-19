@@ -102,7 +102,6 @@ class MainGame:
                 self.game.set_state('end_game')
                 print("YOU WON GAME!!!!")
 
-        pygame.display.flip()
         self.map.image = pygame.transform.scale(self.map.image, (self.screen_w - 200, self.screen_h))
         self.map.draw(self.screen)
         # self.targetGroup.draw(self.screen)
@@ -120,6 +119,8 @@ class MainGame:
         self.bar.action()
         self.find_targets_in_range()
         self.find_targets_on_bomb()
+        pygame.display.flip()
+
 
         # self.drawGrid()
     def set_selected_weapon(self, weapon_type):

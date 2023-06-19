@@ -20,7 +20,7 @@ class Bomb(pygame.sprite.Sprite):
         image_paths = ImagesPaths()
 
         if bomb_type == 3:
-            self.image = pygame.image.load(image_paths.weapons[3])
+            self.image = pygame.image.load(image_paths.weapons[3]).convert()
             image_w = self.image.get_width()
             image_h = self.image.get_height()
             self.image = pygame.transform.scale(self.image, (int(image_w*0.1), int(image_h*0.1)))
@@ -29,7 +29,7 @@ class Bomb(pygame.sprite.Sprite):
 
 
         elif bomb_type == 4:
-            self.image = pygame.image.load(image_paths.weapons[4])
+            self.image = pygame.image.load(image_paths.weapons[4]).convert()
             image_w = self.image.get_width()
             image_h = self.image.get_height()
             self.image = pygame.transform.scale(self.image, (int(image_w * 0.1), int(image_h * 0.1)))

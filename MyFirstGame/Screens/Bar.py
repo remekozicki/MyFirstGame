@@ -10,7 +10,7 @@ class Bar:
     def __init__(self, main_game):
         pygame.font.init()
 
-        self.image = pygame.image.load("assets/woodBar.jpg")
+        self.image = pygame.image.load("assets/woodBar.jpg").convert()
         self.image = pygame.transform.rotate(self.image, 90)
         self.image = pygame.transform.scale(self.image, (200, 800))
 

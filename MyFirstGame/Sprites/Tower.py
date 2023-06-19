@@ -21,7 +21,7 @@ class Tower(pygame.sprite.Sprite):
         image_paths = ImagesPaths()
 
         if tower_type == 0:
-            self.image = pygame.image.load(image_paths.weapons[0])
+            self.image = pygame.image.load(image_paths.weapons[0]).convert_alpha()
             image_w = self.image.get_width()
             image_h = self.image.get_height()
             self.image = pygame.transform.scale(self.image, (int(image_w*0.1), int(image_h*0.1)))
@@ -30,7 +30,7 @@ class Tower(pygame.sprite.Sprite):
             self.price = 50
             self.coldtime = 1000
         elif tower_type == 1:
-            self.image = pygame.image.load(image_paths.weapons[1])
+            self.image = pygame.image.load(image_paths.weapons[1]).convert_alpha()
             image_w = self.image.get_width()
             image_h = self.image.get_height()
             self.image = pygame.transform.scale(self.image, (int(image_w * 0.1), int(image_h * 0.1)))
@@ -39,7 +39,7 @@ class Tower(pygame.sprite.Sprite):
             self.price = 150
             self.coldtime = 500
         elif tower_type == 2:
-            self.image = pygame.image.load(image_paths.weapons[2])
+            self.image = pygame.image.load(image_paths.weapons[2]).convert_alpha()
             image_w = self.image.get_width()
             image_h = self.image.get_height()
             self.image = pygame.transform.scale(self.image, (int(image_w * 0.1), int(image_h * 0.1)))
