@@ -101,6 +101,6 @@ class Bar:
         for i, button in enumerate(self.weapon_buttons):
             if button.action():
                 self.main_game.set_selected_weapon(i)
-                print(i)
+
 
 

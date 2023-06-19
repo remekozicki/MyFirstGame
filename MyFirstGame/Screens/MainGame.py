@@ -12,11 +12,13 @@ from MyFirstGame.Sprites.Map import Map
 from MyFirstGame.Sprites.Target import Target
 from MyFirstGame.Sprites.Tower import Tower
 from MyFirstGame.ImagesPaths import ImagesPaths
+from pygame.locals import *
 
 
 START_MONEY = 100
 
 class MainGame:
+
     def __init__(self, screen, game):
 
         self.game = game
@@ -29,7 +31,7 @@ class MainGame:
         self.screen_w = 1400
         self.screen_h = 800
         self.screen = pygame.display.set_mode((self.screen_w, self.screen_h))
-
+        pygame.event.set_allowed([QUIT, KEYDOWN, KEYUP])
         self.bar = Bar(self)
         self.selected_weapon = -1
 

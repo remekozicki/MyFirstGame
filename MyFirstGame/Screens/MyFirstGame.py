@@ -21,7 +21,6 @@ from MyFirstGame.Sprites.Button import Button
 from MyFirstGame.Screens.Menu import Menu
 from MyFirstGame.Screens.EndGame import Endgame
 from pygame.locals import *
-
 class GameState():
 
     def __init__(self):
@@ -35,6 +34,7 @@ class GameState():
         self.screen_w = 1400
         self.screen_h = 800
         self.screen = pygame.display.set_mode((self.screen_w, self.screen_h))
+        pygame.event.set_allowed([QUIT, KEYDOWN, KEYUP])
 
         self.map = Map(self.selected_map)
 
@@ -44,7 +44,7 @@ class GameState():
         self.main_game = MainGame(self.screen, self)
         # levels screen
         self.levels_screen = LevelsMenu(self.screen_w / 2 - 150, self.screen_h / 2 - 300, 300, 600,
-                                        self.main_game,self)
+                                        self.main_game, self)
         #bar
         self.bar = self.main_game.bar
         #endgame
@@ -151,4 +151,3 @@ class GameState():
 
     def set_selected_map(self, map_type):
         self.map = Map(map_type)
-        print("sm", map_type)
