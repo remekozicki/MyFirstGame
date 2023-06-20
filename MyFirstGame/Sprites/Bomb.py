@@ -5,7 +5,7 @@ from MyFirstGame.ImagesPaths import ImagesPaths
 
 class Bomb(pygame.sprite.Sprite):
 
-    def __init__(self, bomb_type, pos_x, pos_y ):
+    def __init__(self, bomb_type, pos_x, pos_y):
         super().__init__()
         self.pos_x = pos_x
         self.pos_y = pos_y
@@ -23,7 +23,7 @@ class Bomb(pygame.sprite.Sprite):
             self.image = pygame.image.load(image_paths.weapons[3]).convert_alpha()
             image_w = self.image.get_width()
             image_h = self.image.get_height()
-            self.image = pygame.transform.scale(self.image, (int(image_w*0.1), int(image_h*0.1)))
+            self.image = pygame.transform.scale(self.image, (int(image_w * 0.1), int(image_h * 0.1)))
             self.range = 100
             self.price = 150
 
@@ -38,5 +38,3 @@ class Bomb(pygame.sprite.Sprite):
 
         else:
             print("error in bomb class - wrong type")
-
-
