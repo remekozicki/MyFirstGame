@@ -104,7 +104,6 @@ class MainGame:
 
         self.map.image = pygame.transform.scale(self.map.image, (self.screen_w - 200, self.screen_h))
         self.map.draw(self.screen)
-        # self.targetGroup.draw(self.screen)
 
         for target in self.targetGroup:
             target.draw(self.screen)
@@ -113,13 +112,6 @@ class MainGame:
         for bullet in self.bulletsGroup:
             bullet.draw(self.screen)
             bullet.move()
-            # if bullet.rect.x == bullet. and bullet.rect.y == bullet.y2:
-            #     bullet.remove(self.bulletsGroup)
-            #     bullet.kill()
-
-
-
-
 
         self.bar.draw(self.screen)
         self.weapon_menager.draw_towers(self.screen)

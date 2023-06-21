@@ -89,15 +89,7 @@ class GameState():
 
                 if play_button.action():
                     print("play")
-                    # self.targetGroup = pygame.sprite.Group()
                     self.main_game.start_game()
-
-                    # usun
-                    # for i in range(20):
-                    #     newT = Target("assets/new_bullet.png", -random.randrange(0, 100) * 5, 0, self.map.path)
-                    #     self.targetGroup.add(newT)
-                    # usun-end
-
                     self.state = 'main_game'
 
                 if level_button.action():
@@ -112,8 +104,6 @@ class GameState():
         self.map.image = pygame.transform.scale(self.map.image, (self.screen_w - 200, self.screen_h))
         self.map.draw(self.screen)
         self.bar.draw(self.screen)
-
-        # self.crosshairGroup.add(self.crosshair)
 
     def end_game(self):
 

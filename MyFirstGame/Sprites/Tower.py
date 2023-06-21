@@ -12,8 +12,6 @@ class Tower(pygame.sprite.Sprite):
         self.set_tower_attributes(tower_type)
         self.rect = self.image.get_rect()
         self.rect.center = (pos_x, pos_y)
-
-        # self.clock = pygame.time.Clock()
         self.curr_time = 0
         self.last_shot = 0
 
@@ -53,14 +51,10 @@ class Tower(pygame.sprite.Sprite):
     def draw(self, screen):
         screen.blit(self.image, self.rect)
 
-    # def shot_done(self):
-    #     self.last_shot = pygame.time.get_ticks()
-
     def is_ready_to_shot(self):
         self.curr_time = pygame.time.get_ticks()
 
         if self.curr_time - self.last_shot > self.coldtime:
             self.last_shot = self.curr_time
             return True
-#             funkcja
         return False

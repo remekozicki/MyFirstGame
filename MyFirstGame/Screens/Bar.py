@@ -27,7 +27,7 @@ class Bar:
 
         i = 0
         for path in image_paths.weapons:
-            if(i < 3):
+            if i < 3:
                 self.weapon_buttons.append(Button(1210, 70 + i * 110, 0.20, path))
             else:
                 self.weapon_buttons.append(Button(1210, 85 + i * 110, 0.20, path))
@@ -48,14 +48,13 @@ class Bar:
             # pygame.draw.rect(screen, color, pygame.Rect(button.pos_x, button.pos_y, 100, 100))
             button.draw(screen)
 
-    def draw_titles(self,screen):
+    def draw_titles(self, screen):
         my_font = pygame.font.Font('assets/Silkscreen/slkscre.ttf', 25)
         text_tower = my_font.render("TOWERS", False, (255, 255, 255))
         screen.blit(text_tower, (1230, 20))
 
         text_trap = my_font.render("TRAPS", False, (255, 255, 255))
         screen.blit(text_trap, (1240, 380))
-
 
     def draw_prices(self, screen):
         start_group = 85
@@ -64,20 +63,19 @@ class Bar:
             text_price = my_font.render("price: " + str(Tower(i, 0, 0).price), False, (255, 255, 255))
             text_range = my_font.render("range: " + str(Tower(i, 0, 0).range), False, (255, 255, 255))
             text_coldtime = my_font.render("ctime: " + str(Tower(i, 0, 0).coldtime/1000) + "s", False, (255, 255, 255))
-            text_demage = my_font.render("attack: " + str(Tower(i, 0, 0).damage), False,(255, 255, 255))
+            text_demage = my_font.render("attack: " + str(Tower(i, 0, 0).damage), False, (255, 255, 255))
 
             screen.blit(text_price, (1310, start_group + i * 110))
             screen.blit(text_range, (1310, start_group + i * 110 + 10))
             screen.blit(text_coldtime, (1310, start_group + i * 110 + 20))
             screen.blit(text_demage, (1310, start_group + i * 110 + 30))
 
-        for i in range(3,5):
+        for i in range(3, 5):
             my_font = pygame.font.Font('assets/Silkscreen/slkscre.ttf', 10)
             text_surface = my_font.render("price: " + str(Bomb(i, 0, 0).price), False, (255, 255, 255))
             screen.blit(text_surface, (1310, start_group + i * 110 + 15))
             text_surface = my_font.render("range: " + str(Bomb(i, 0, 0).range), False, (255, 255, 255))
             screen.blit(text_surface, (1310, start_group + i * 110 + 25))
-
 
     def draw_money(self, screen):
         my_font = pygame.font.Font('assets/Silkscreen/slkscre.ttf', 25)
@@ -96,11 +94,7 @@ class Bar:
         text_surface = my_font.render("wave:" + str(current_wave) + "/" + str(all_waves), False, (255, 255, 255))
         screen.blit(text_surface, (1215, 750))
 
-
     def action(self):
         for i, button in enumerate(self.weapon_buttons):
             if button.action():
                 self.main_game.set_selected_weapon(i)
-
-
-

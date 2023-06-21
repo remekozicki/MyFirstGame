@@ -1,6 +1,3 @@
-import pygame
-
-
 class ImagesPaths:
 
     def __init__(self):

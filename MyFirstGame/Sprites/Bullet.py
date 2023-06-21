@@ -1,12 +1,7 @@
 import math
-
 import pygame
 
-from MyFirstGame.ImagesPaths import ImagesPaths
-
-
 class Bullet(pygame.sprite.Sprite):
-
     def __init__(self, pos_x, pos_y, dest_x, dest_y):
         super().__init__()
         self.x1 = pos_x
@@ -33,6 +28,3 @@ class Bullet(pygame.sprite.Sprite):
 
         self.rect.x += dirn[0] * 100
         self.rect.y += dirn[1] * 100
-
-
-
