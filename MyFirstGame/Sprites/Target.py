@@ -36,15 +36,6 @@ class Target(pygame.sprite.Sprite):
         else:
             print("wrong target type")
 
-    # def draw(self, screen):
-    #
-    #     screen.blit(self.image, self.rect)
-        # my_font = pygame.font.SysFont('Comic Sans MS', 30)
-        # text_tower = my_font.render("koperek", False, (255, 255, 255))
-        # screen.blit(text_tower, (200, 200))
-
-
-
     def draw(self, screen):
         screen.blit(self.image, self.rect)
 

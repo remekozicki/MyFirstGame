@@ -43,4 +43,3 @@ class LevelsMenu:
                 self.main_game.set_selected_map(i)
                 self.game.set_selected_map(i)
 
-

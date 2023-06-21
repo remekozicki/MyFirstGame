@@ -2,17 +2,6 @@ import pygame
 # import random
 import sys
 
-# from MyFirstGame.ImagesPaths import ImagesPaths
-# # from MyFirstGame.MyFirstGame.Menagers.WeaponMenager import WeaponMenager
-# from MyFirstGame.Screens.MainGame import MainGame
-# from MyFirstGame.Screens.Menu import Menu
-# from MyFirstGame.Sprites.Button import Button
-# # from MyFirstGame.MyFirstGame.Sprites.Crosshair import Crosshair
-# from MyFirstGame.Screens.Bar import Bar
-# from MyFirstGame.Screens.LevelsMenu import LevelsMenu
-# from MyFirstGame.Sprites.Map import Map
-# # from MyFirstGame.MyFirstGame.Sprites.Target import Target
-
 from MyFirstGame.ImagesPaths import ImagesPaths
 from MyFirstGame.Screens.LevelsMenu import LevelsMenu
 from MyFirstGame.Screens.MainGame import MainGame
@@ -21,6 +10,8 @@ from MyFirstGame.Sprites.Button import Button
 from MyFirstGame.Screens.Menu import Menu
 from MyFirstGame.Screens.EndGame import Endgame
 from pygame.locals import *
+
+
 class GameState():
 
     def __init__(self):
@@ -28,7 +19,6 @@ class GameState():
         self.state = 'intro'
 
         self.selected_map = 0
-
 
         # game screen
         self.screen_w = 1400
@@ -45,9 +35,9 @@ class GameState():
         # levels screen
         self.levels_screen = LevelsMenu(self.screen_w / 2 - 150, self.screen_h / 2 - 300, 300, 600,
                                         self.main_game, self)
-        #bar
+        # bar
         self.bar = self.main_game.bar
-        #endgame
+        # endgame
         self.endGame = Endgame()
 
     def state_manager(self):
@@ -66,15 +56,12 @@ class GameState():
 
     def intro(self):
         pygame.mouse.set_visible(True)
-        # logo XD
-        # logo = pygame.image.load("./assets/logo.png")
-        # logo = pygame.transform.scale(logo, (250, 250))
-        # buttons
+
         play_button = Button(self.screen_w / 2 - 75, self.screen_h / 2 - 130, 0.5,
                              "./assets/orange button/Play orange button 300x80.png")
-        quit_button = Button(self.screen_w / 2 - 75, self.screen_h / 2 + 70 , 0.5,
+        quit_button = Button(self.screen_w / 2 - 75, self.screen_h / 2 + 70, 0.5,
                              "./assets/orange button/Quit orange button 300x80.png")
-        level_button = Button(self.screen_w / 2 - 75, self.screen_h / 2 - 30 , 0.5,
+        level_button = Button(self.screen_w / 2 - 75, self.screen_h / 2 - 30, 0.5,
                               "./assets/orange button/level select orange button 300x80.png")
 
         for event in pygame.event.get():
@@ -89,14 +76,8 @@ class GameState():
 
                 if play_button.action():
                     print("play")
-                    # self.targetGroup = pygame.sprite.Group()
-                    self.main_game.start_game()
 
-                    # usun
-                    # for i in range(20):
-                    #     newT = Target("assets/new_bullet.png", -random.randrange(0, 100) * 5, 0, self.map.path)
-                    #     self.targetGroup.add(newT)
-                    # usun-end
+                    self.main_game.start_game()
 
                     self.state = 'main_game'
 
@@ -112,8 +93,6 @@ class GameState():
         self.map.image = pygame.transform.scale(self.map.image, (self.screen_w - 200, self.screen_h))
         self.map.draw(self.screen)
         self.bar.draw(self.screen)
-
-        # self.crosshairGroup.add(self.crosshair)
 
     def end_game(self):
 
