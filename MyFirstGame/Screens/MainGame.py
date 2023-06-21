@@ -176,7 +176,7 @@ class MainGame:
                     if tower.is_ready_to_shot():
                         bullet = Bullet(tower.pos_x, tower.pos_y, target.rect.x, target.rect.y)
                         self.bulletsGroup.add(bullet)
-
+                        self.shotSound.play()
                         target.hp -= tower.damage
 
                         if (target.hp <= 0):
